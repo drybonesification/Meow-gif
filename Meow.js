@@ -1,6 +1,8 @@
 window.onload = function() {
   console.log("READY!!! MEOW!!!");
   var searchGiphyButton = document.getElementById("getMeow");
+  var giphyImage = document.getElementById("GliphImg");
+  console.log(giphyImage);
 
   searchGiphyButton.addEventListener("click", function() {
     console.log("Meow Click Click!!");
@@ -16,7 +18,9 @@ window.onload = function() {
     );
     xhr.onload = function() {
       if (xhr.status === 200 && xhr.readyState === 4) {
-        console.log(xhr.response);
+        var payload = JSON.parse(xhr.response);
+        console.log(payload.data.image_url);
+        giphyImage.src = payload.data.image_url;
       }
     };
 
